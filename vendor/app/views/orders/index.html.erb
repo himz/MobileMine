@@ -1,0 +1,30 @@
+<!-- display list of orders. This can be used for user admin_users -->
+<%= form_tag :controller => 'orders', :action => 'track'%>
+<%= text_field_tag(:track_id) %>
+<%= submit_tag "Track", class: "btn" %>
+
+<h1>My orders</h1>
+
+
+<table cellpadding="10">
+  <tr>
+    <th><b>Item</b></th>
+    <th><b>Status</b></th>
+  </tr>
+<% if @orders %>
+<% @orders.each do |order| %>
+  <tr>
+    <% item = Item.find(order.item_id) %>
+    <td><%= link_to item.name, item %></td>
+    <td><%= link_to @states[order.state], order %></td>
+    <td><%= link_to "TRACK ORDER", order, class: "btn" %></td>
+  </tr>
+<% end %>
+<%else%>
+  You have no orders currently. Search our list of items to find the one you need
+<%end%>
+
+</table>
+
+<br />
+

@@ -1,0 +1,45 @@
+<!--Item.all.sort{ |a,b| a.created_at <=> b.created_at }-->
+<div class="row">
+  <!-- Start Sidebar -->
+
+  <!-- End Sidebar -->
+  <div class="span7 popular_products">
+  <h2>Sign in</h2>
+
+  <span class="error_message">
+  <%- flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+  <%- end -%>
+  </span>
+
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <table cellpadding="10">
+        <tr>
+            <td align="right"><%= f.label :email %> </td>
+            <td><%= f.email_field :email %></td>
+        </tr>
+        <tr>
+            <td align="right"><%= f.label :password %> </td>
+            <td><%= f.password_field :password %> </td>
+        </tr>
+        <% if devise_mapping.rememberable? %>
+        <tr>
+          <td align="right"><%= f.check_box :remember_me %> </td>
+          <td><%= f.label :remember_me %></td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center" ><div><%= f.submit "Sign in" %></div></td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center" ><div><%= render "devise/shared/links" %></div></td>
+        </tr>
+        <% end %>
+      </table>
+  <% end %>
+
+  </div>
+</div>
+
+
+
+

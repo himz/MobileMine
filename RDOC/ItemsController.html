@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=IBM437" http-equiv="Content-Type">
+
+<title>class ItemsController - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/controllers/items_controller.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-admin_delete">#admin_delete</a>
+    
+    <li><a href="#method-i-admin_edit">#admin_edit</a>
+    
+    <li><a href="#method-i-admin_index">#admin_index</a>
+    
+    <li><a href="#method-i-admin_new">#admin_new</a>
+    
+    <li><a href="#method-i-admin_show">#admin_show</a>
+    
+    <li><a href="#method-i-create">#create</a>
+    
+    <li><a href="#method-i-index">#index</a>
+    
+    <li><a href="#method-i-new_items">#new_items</a>
+    
+    <li><a href="#method-i-show">#show</a>
+    
+    <li><a href="#method-i-update">#update</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./Gemfile.html">Gemfile</a>
+  
+    <li class="file"><a href="./Rakefile.html">Rakefile</a>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+    <li class="file"><a href="./public/robots_txt.html">robots</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./BestBay.html">BestBay</a>
+  
+    <li><a href="./BestBay/Application.html">BestBay::Application</a>
+  
+    <li><a href="./AddFieldsToItem.html">AddFieldsToItem</a>
+  
+    <li><a href="./AddPictureToCategories.html">AddPictureToCategories</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./CategoriesController.html">CategoriesController</a>
+  
+    <li><a href="./CategoriesHelper.html">CategoriesHelper</a>
+  
+    <li><a href="./Category.html">Category</a>
+  
+    <li><a href="./CreateCategories.html">CreateCategories</a>
+  
+    <li><a href="./CreateItemCategories.html">CreateItemCategories</a>
+  
+    <li><a href="./CreateItems.html">CreateItems</a>
+  
+    <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./HomeHelper.html">HomeHelper</a>
+  
+    <li><a href="./Item.html">Item</a>
+  
+    <li><a href="./ItemCategory.html">ItemCategory</a>
+  
+    <li><a href="./ItemsController.html">ItemsController</a>
+  
+    <li><a href="./ItemsHelper.html">ItemsHelper</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./RemoveCategoryIdFromItem.html">RemoveCategoryIdFromItem</a>
+  
+    <li><a href="./RemoveOsFromItem.html">RemoveOsFromItem</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class ItemsController</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-admin_delete" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">admin_delete</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This action deletes an item from database</p>
+
+<p>This will be used in a future story card</p>
+
+<p>@param: id</p>
+
+<p>@return</p>
+          
+
+          
+          <div class="method-source-code" id="admin_delete-source">
+            <pre><span class="ruby-comment"># File app/controllers/items_controller.rb, line 178</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">admin_delete</span>
+
+  <span class="ruby-ivar">@item</span> = <span class="ruby-constant">Item</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@item</span>.<span class="ruby-identifier">destroy</span>
+
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">admin_index_path</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- admin_delete-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- admin_delete-method -->
+
+    
+      <div id="method-i-admin_edit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">admin_edit</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This action sets values that are used by edit item for a seller page</p>
+
+<p>This will be used in a future story card</p>
+
+<p>@param: search, id</p>
+
+<p>@return</p>
+          
+
+          
+          <div class="method-source-code" id="admin_edit-source">
+            <pre><span class="ruby-comment"># File app/controllers/items_controller.rb, line 143</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">admin_edit</span>
+  <span class="ruby-ivar">@search</span> = <span class="ruby-constant">Item</span>.<span class="ruby-identifier">search</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>])
+
+  <span class="ruby-ivar">@item</span>=<span class="ruby-constant">Item</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- admin_edit-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- admin_edit-method -->
+
+    
+      <div id="method-i-admin_index" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">admin_index</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This action sets values that are used by list item for a seller page</p>
+
+<p>This will be used in a future story card</p>
+
+<p>@param: search</p>
+
+<p>@return</p>
+          
+
+          
+          <div class="method-source-code" id="admin_index-source">
+            <pre><span class="ruby-comment"># File app/controllers/items_controller.rb, line 126</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">admin_index</span>
+
+  <span class="ruby-ivar">@items</span>=<span class="ruby-constant">Item</span>.<span class="ruby-identifier">all</span>
+
+
+  <span class="ruby-ivar">@search</span> = <span class="ruby-constant">Item</span>.<span class="ruby-identifier">search</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>])
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- admin_index-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- admin_index-method -->
+
+    
+      <div id="method-i-admin_new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">admin_new</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This action sets values that are used by a new item for a seller page</p>
+
+<p>This will be used in a future story card</p>
+
+<p>@param: search</p>
+
+<p>@return</p>
+          
+
+          
+          <div class="method-source-code" id="admin_new-source">
+            <pre><span class="ruby-comment"># File app/controllers/items_controller.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">admin_new</span>
+
+  <span class="ruby-ivar">@item</span>=<span class="ruby-constant">Item</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@search</span> = <span class="ruby-constant">Item</span>.<span class="ruby-identifier">search</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>])
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- admin_new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- admin_new-method -->
+
+    
+      <div id="method-i-admin_show" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">admin_show</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This action sets values that are used by show item for a seller page</p>
+
+<p>This will be used in a future story card</p>
+
+<p>@param: search, id</p>
+
+<p>@return</p>
+          
+
+          
+          <div class="method-source-code" id="admin_show-source">
+            <pre><span class="ruby-comment"># File app/controllers/items_controller.rb, line 109</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">admin_show</span>
+  <span class="ruby-ivar">@search</span> = <span class="ruby-constant">Item</span>.<span class="ruby-identifier">search</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>])
+
+  <span class="ruby-ivar">@item</span>=<span class="ruby-constant">Item</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- admin_show-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- admin_show-method -->
+
+    
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This action stores the item information retrieved from new item for a
+seller page and stores  it in the database</p>
+
+<p>This will be used in a future story card</p>
+
+<p>@param: item, search</p>
+
+<p>@return</p>
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File app/controllers/items_controller.rb, line 87</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+  <span class="ruby-ivar">@item</span> = <span class="ruby-constant">Item</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:item</span>])
+  <span class="ruby-ivar">@search</span> = <span class="ruby-constant">Item</span>.<span class="ruby-identifier">search</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>])
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@item</span>.<span class="ruby-identifier">save</span>
+
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">admin_show_path</span>(<span class="ruby-ivar">@item</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">'Item was successfully created.'</span>
+
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;admin_new&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create-method -->
+
+    
+      <div id="method-i-index" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">index</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This action sets values that are used by the list of items page</p>
+
+<p>Story: Display list of items(<a
+href="https://www.pivotaltracker.com/story/show/36204003">www.pivotaltracker.com/story/show/36204003</a>)</p>
+
+<p>@param: search</p>
+
+<p>@return</p>
+          
+
+          
+          <div class="method-source-code" id="index-source">
+            <pre><span class="ruby-comment"># File app/controllers/items_controller.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+  <span class="ruby-ivar">@items</span>=<span class="ruby-constant">Item</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@categories</span> = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@search</span> = <span class="ruby-constant">Item</span>.<span class="ruby-identifier">search</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>])
+  <span class="ruby-ivar">@keyword</span> =  <span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>]
+  <span class="ruby-ivar">@items</span> = <span class="ruby-ivar">@search</span>.<span class="ruby-identifier">all</span>   <span class="ruby-comment"># or @search.relation to lazy load in view</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- index-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- index-method -->
+
+    
+      <div id="method-i-new_items" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new_items</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This action sets values that are used by new items page</p>
+
+<p>Story: Display new products(<a
+href="https://www.pivotaltracker.com/story/show/36285829">www.pivotaltracker.com/story/show/36285829</a>)</p>
+
+<p>@param: search</p>
+
+<p>@return</p>
+          
+
+          
+          <div class="method-source-code" id="new_items-source">
+            <pre><span class="ruby-comment"># File app/controllers/items_controller.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">new_items</span>
+  <span class="ruby-ivar">@items</span> = <span class="ruby-constant">Item</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">sort</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">created_at</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">created_at</span> }.<span class="ruby-identifier">sample</span>(<span class="ruby-value">4</span>)
+  <span class="ruby-ivar">@categories</span> = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@search</span> = <span class="ruby-constant">Item</span>.<span class="ruby-identifier">search</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>])
+  <span class="ruby-ivar">@keyword</span> =  <span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new_items-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new_items-method -->
+
+    
+      <div id="method-i-show" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This action sets values that are used by detail of item page</p>
+
+<p>Story: Display detail of item(<a
+href="https://www.pivotaltracker.com/story/show/36285515">www.pivotaltracker.com/story/show/36285515</a>)</p>
+
+<p>@param: id, search</p>
+
+<p>@return</p>
+          
+
+          
+          <div class="method-source-code" id="show-source">
+            <pre><span class="ruby-comment"># File app/controllers/items_controller.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
+  <span class="ruby-ivar">@item</span>=<span class="ruby-constant">Item</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@search</span> = <span class="ruby-constant">Item</span>.<span class="ruby-identifier">search</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>])
+  <span class="ruby-ivar">@keyword</span> =  <span class="ruby-identifier">params</span>[<span class="ruby-value">:search</span>]
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@item</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">redirect_to</span>(<span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'index'</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@categories</span>=<span class="ruby-constant">Category</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- show-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- show-method -->
+
+    
+      <div id="method-i-update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This action sets values of item and updates the database</p>
+
+<p>This will be used in a future story card</p>
+
+<p>@param: id, item</p>
+
+<p>@return</p>
+          
+
+          
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File app/controllers/items_controller.rb, line 159</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+  <span class="ruby-ivar">@item</span> = <span class="ruby-constant">Item</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@item</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:item</span>])
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">admin_show_path</span>(<span class="ruby-ivar">@item</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">'Item was successfully updated.'</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">admin_edit_path</span>(<span class="ruby-ivar">@item</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- update-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- update-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

@@ -1,0 +1,55 @@
+<h1 xmlns="http://www.w3.org/1999/html"></h1>
+
+<table width="100%" cellpadding="5">
+  <tr>
+      <td colspan="2">
+        <div class="well">The last time you signed in:
+        <%= current_user.last_sign_in_at.getlocal.to_formatted_s(:long)%><br>
+        </div>
+      </td>
+  </tr>
+  <tr>
+    <td>
+      <div class="alert">
+      <h3>General</h3>
+      <ul>
+        <li><%= link_to "My Cart", cart_path(@cart)  %></li>
+        <li><%= link_to "My WishList", "/carts/wishlist"  %></li>
+        <li><%=link_to "View User Information", users_show_path %></li>
+        <li><%=link_to "Modify User Information", edit_user_registration_path %></li>
+      </ul>
+      </div>
+    </td>
+    <td>
+      <div class="alert alert-success">
+      <h3>BUY</h3>
+      <ul>
+        <li><%=link_to "Current Orders", orders_path %></li>
+        <li><%=link_to "Current Bids", auction_index_user_path %></li>
+        <li><%=link_to "Credit Card Information", cards_path%></li>
+        <li><%=link_to "Orders History", history_orders_path %></li>
+      </ul>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+    <% if current_user.user_type ==1 %>
+        <h3><%= link_to "Activate Seller Account", users_activate_seller_path, :class => "btn btn-primary" %></h3>
+    <%else%>
+          <div class="alert alert-info">
+          <h3>SELL</h3>
+
+          <ul>
+            <li><%=link_to "My selling items", user_items_index_path %></li>
+            <li><%=link_to "Current Sales", order_seller_current_path %></li>
+            <li><%=link_to "Reports", order_seller_history_path %></li>
+            <li><%=link_to "Auction History", seller_auction_history_index_path %></li>
+            <li><%=link_to "Sell new item", user_items_new_path %></li>
+          </ul>
+          </div>
+
+    <%end%>
+    </td>
+  </tr>
+</table>

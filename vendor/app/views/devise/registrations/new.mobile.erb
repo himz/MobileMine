@@ -1,0 +1,65 @@
+<!--Item.all.sort{ |a,b| a.created_at <=> b.created_at }-->
+<div class="row">
+  <!-- Start Sidebar -->
+
+  <!-- End Sidebar -->
+  <div class="span7 popular_products">
+    <h2>Sign up</h2>
+
+  <span class="error_message">
+  <%- flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+  <%- end -%>
+  </span>
+
+
+
+
+
+
+
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
+        <table cellpadding="10">
+          <tr>
+            <td align="right"><%= f.label :first_name %> </td>
+            <td><%= f.text_field :first_name %></td>
+          </tr>
+          <tr>
+            <td align="right"><%= f.label :last_name %></td>
+            <td><%= f.text_field :last_name %></td>
+          </tr>
+          <tr>
+            <td align="right"><%= f.label :phone_number %></td>
+            <td><%= f.text_field :phone_number %></td>
+          </tr>
+          <tr>
+            <td align="right"><%= f.label :address %></td>
+            <td><%= f.text_field :address %></td>
+          </tr>
+          <tr>
+            <td align="right"><%= f.label :zipcode %></td>
+            <td><%= f.text_field :zipcode %></td>
+          </tr>
+          <tr>
+            <td align="right"><%= f.label :email %></td>
+            <td><%= f.email_field :email %></td>
+          </tr>
+          <tr>
+            <td align="right"><%= f.label :password %></td>
+            <td><%= f.password_field :password %></td>
+          </tr>
+          <tr>
+            <td align="right"><%= f.label :password_confirmation %></td>
+            <td><%= f.password_field :password_confirmation %></td>
+          </tr>
+          <tr>
+             <td colspan="2" align="center" ><div><div><%= f.submit "Sign up" %></div></div></td>
+          </tr>
+        </table>
+    <% end %>
+  </div>
+</div>
+
+
+

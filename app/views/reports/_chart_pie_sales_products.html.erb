@@ -1,0 +1,58 @@
+<!-- Item listing is generic, can be used by search results -->
+
+<script type="text/javascript" charset="utf-8">
+    $(function() {
+        new Highcharts.Chart({
+
+            chart: {
+                renderTo: 'sales_pie',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false  ,
+                type: 'pie'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage) +' %';
+                        }
+                    }
+                }
+            },
+            title: {
+                text: 'Sales quantity breakdown by product'
+            },
+            tooltip: {
+                formatter: function() {
+                    return   this.series.name +':' +
+                            Highcharts.numberFormat(this.y, 2) + ' Bought';
+                }
+            },
+
+
+            series: [{
+
+                name: 'Quantity',
+                data: [
+
+                    <%  @data_chart_sales_products.each do |data | %>
+                    {
+                        name:'<%= data.name %>',
+                        y: <%= data.sum_sales %>
+                    },
+                    <%end%>
+
+                ]
+            }]
+
+        });
+    });
+</script>
+
+<div id="sales_pie" style="width:560px; height:300px;"></div>

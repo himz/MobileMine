@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+<p> This auction ends at <%=@auction.end_time %></p>
+<p>
+  <b>Item:</b>
+  <%=@auction.item_id%> - <%=  Item.find(@auction.item_id).name %>
+</p>
+
+<p>
+  <b>Bid amount:</b>
+  <%= @auction.bid_amount %>
+</p>
+
+<p>
+  <b>Highest bidder:</b>
+  <% @bidder = @auction.highest_bidder %>
+  <% if @bidder %>
+    <%=  User.find(@auction.highest_bidder) %>
+  <%else%>
+    <%=  "No bidder!" %>
+  <%end %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @auction.state %>
+</p>
+
+<%= link_to 'Edit', {:controller=>"auctions",:action => "seller_edit", :id => @auction.id}%>
+<%= link_to 'Back', item_path(@auction.item_id) %>

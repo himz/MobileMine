@@ -1,0 +1,49 @@
+<!-- Item listing is generic, can be used by search results -->
+
+<script type="text/javascript" charset="utf-8">
+    $(function() {
+        new Highcharts.Chart({
+
+            chart: {
+                renderTo: 'seller_bar',
+                type: 'bar'
+            },
+            title: {
+                text: 'Best Sellers of the system'
+            },
+            xAxis: {
+                title: {
+                    text: 'Users'
+                }            ,
+                categories:[
+
+                ]
+            },
+            yAxis: {
+                title: {
+                    text: 'Amount Sold in $'
+                }
+            },
+            tooltip: {
+                formatter: function() {
+                    return   this.series.name +':' +
+                            Highcharts.numberFormat(this.y, 2) + ' Bought';
+                }
+            },
+
+
+            series: [
+                <% @data_chart_sellers_price.each do |data | %>
+                {
+                    name: "<%= data.first_name %>",
+
+                    data: [<%= data.sum_price %>]
+                },
+                <% end %>
+            ]
+
+        });
+    });
+</script>
+
+<div id="seller_bar" style="width:400px; height:300px;"></div>

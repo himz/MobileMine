@@ -1,0 +1,53 @@
+<!--Item.all.sort{ |a,b| a.created_at <=> b.created_at }-->
+<div class="row">
+  <!-- Start Sidebar -->
+  <div class="span3">
+    <%= render "layouts/sidebar" %>
+  </div>
+  <%= flash[:notice] %>
+  <!-- End Sidebar -->
+  <div class="span7 popular_products">
+    <h1>Confirm Order</h1>
+    <br/>
+    <!-- Confirm order. The item selected earlier is passed to the controller-->
+    <%= form_tag create_order_path(:item=>@item), validates:true %>
+
+        <table cellpadding="10">
+          <tr>
+            <td align="right">Name</td>
+            <td><%= text_field_tag(:firstname, current_user.first_name) %></td>
+          </tr>
+          <% if(@credit_cards.nil?) %>
+          <tr>
+            <td align="right">Credit Card Number</td>
+            <td> <%= text_field_tag(:credit_card_no) %></td>
+          </tr>
+          <tr>
+            <td align="right">Address</td>
+            <td> <%= text_area_tag(:address) %></td>
+          </tr>
+          <tr>
+            <td align="right">ZipCode</td>
+            <td><%= text_field_tag(:zipcode) %></td>
+          </tr>
+          <%else%>
+          <tr>
+            <td align="right">Credit Card Number</td>
+            <td> <%= text_field_tag(:credit_card_no, @credit_cards.credit_card_no) %></td>
+          </tr>
+          <tr>
+            <td align="right">Address</td>
+            <td> <%= text_area_tag(:address, @credit_cards.billing_address) %></td>
+          </tr>
+          <tr>
+            <td align="left">ZipCode</td>
+            <td><%= text_field_tag(:zipcode, @credit_cards.zipcode) %></td>
+          </tr>
+          <% end %>
+          <tr>
+            <td colspan="2"><center><%= submit_tag "Confirm Order", class: "btn" %></center></td>
+          </tr>
+        </table>
+
+  </div>
+</div>

@@ -1,0 +1,139 @@
+<div class="row">
+
+<div class="span3">
+
+  <%= render "layouts/sidebar" %>
+
+</div>
+
+
+  <div class="span9">
+    <div>
+      <h1><%= @item.name %></h1>
+    </div>
+    <hr>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=164915040221827";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="true"></div>
+
+    <p id="notice"><%= notice %></p>
+    <div class="item_image"><%= image_tag(@item.image_url, :class => 'item_image')%></div>
+    <div class="item_content" >
+      <table cellpadding="10">
+        <tr>
+          <td><h2><%= @item.name %><%= @message %></h2></td>
+        </tr>
+        <tr>
+          <td><h4>Manufacturer</h4></td>
+          <td><%= @item.manufacturer %></td>
+        </tr>
+
+        <% if @item.auction_flag %>
+            <% @auction=Auction.find(@item.auction_id) %>
+            <tr>
+              <td><h4>Last Bid</h4></td>
+              <td> <%= number_to_currency(@auction.bid_amount, :unit => "$") %></td>
+            </tr>
+
+            <tr>
+              <td><h4>Time left</h4></td>
+              <td><%= render "auctions/countdown" %></td>
+            </tr>
+        <% else %>
+            <tr>
+              <td><h4>Available</h4></td>
+              <td><%= @item.availability %></td>
+            </tr>
+        <tr>
+           <td><h4>Price</h4></td>
+           <td> <%= number_to_currency(@item.price.to_f, :unit => "$") %></td>
+        </tr>
+        <% end %>
+
+      </table>
+      <tr><br/>
+        <% if user_signed_in?%>
+            <% if current_user.id == @item.user_id %>
+                <%= link_to("Edit", {:action => "user_edit_item", :id => @item.id}, class: "btn btn-primary" ) %>
+                <%= link_to("Delete",  {:action => "user_delete_item", :id => @item.id} , :confirm => 'are you sure?', class: "btn btn-warning") %>
+                <% if @item.auction_flag == true %>
+                    <td><%= link_to 'Cancel Auction', auction_delete_path(@item.auction_id),class: "btn btn-danger" %></td>
+
+            <%end%>
+        <% else %>
+                <% if current_user.user_type != 0 %>
+                <!--% if @item.availability.to_i > 0 %> <!--TODO: Fix the model so that availability is an integer -->
+                    <% if @item.auction_flag %>
+                        <% if (@auction.end_time > Time.now) %>
+                        <center><td><%= link_to 'Bid', edit_auction_path(@item.auction_id, :item=>@item), class: "btn btn-primary" %></td>
+                        </center>
+                        <% end %>
+                    <% else %>
+
+                            <td>
+                                <table cellpadding="10">
+                                    <tr>
+                                      <td><%= button_to 'Add to cart', line_items_path(:item_id=>@item,:line_item_type => 0), class: "btn btn-primary" %></td>
+                                      <td><%= button_to 'Add to wishlist', line_items_path(:item_id=>@item,:line_item_type => 1), class: "btn btn-success" %></td>
+                                    </tr>
+                                </table>
+                            </td>
+                    <% end %>
+                <!--%else%-->
+                 <!--   Out of stock!-->
+                <!--%end%-->
+                <% end %>
+            <% end %>
+        <% else %>
+            <br/><br/><br/>
+            <h4> Please <%= link_to "Sign In", "/users/sign_in" %> to Buy the Product </h4>
+
+        <% end %>
+      </tr>
+    </div>
+
+  </div>
+  <div>&nbsp;<br/>&nbsp;</div>
+    <div class="span9">
+      <div class="tabbable">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#1" data-toggle="tab">Description</a></li>
+          <li><a href="#4" data-toggle="tab">Specifications</a></li>
+          <li><a href="#2" data-toggle="tab">Reviews</a></li>
+          <li><a href="#3" data-toggle="tab">Comment</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="1">
+            <%=   @item.description %>
+          </div>
+          <div class="tab-pane active" id="4">
+            Item specifications...
+          </div>
+          <div class="tab-pane" id="2">
+            <%= link_to 'Read more about specifications, reviews, compare with other products...', "http://www.phonearena.com/search/term/"+@item.name %>
+          </div>
+          <div class="tab-pane" id="3">
+            <div id="fb-root"></div>
+            <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=164915040221827";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+            <div class="fb-comments" data-href="<%= request.url %>" data-num-posts="2" data-width="700"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+

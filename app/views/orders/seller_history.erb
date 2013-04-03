@@ -1,0 +1,161 @@
+<!-- display list of orders. This can be used for user admin_users -->
+<% if  user_signed_in? and current_user.user_type == 2 %>
+<div class="alert">
+<h3>My Sales History</h3>
+</div>
+
+
+
+      <script type="text/javascript" charset="utf-8">
+          $(function() {
+              new Highcharts.Chart({
+
+                  chart: {
+                      renderTo: 'bar',
+                      type: 'bar'
+                  },
+                  title: {
+                      text: 'Performance of the Products'
+                  },
+                  xAxis: {
+                      title: {
+                          text: 'Items'
+                      }            ,
+                      categories:[
+
+                      ]
+                  },
+                  yAxis: {
+                      title: {
+                          text: 'Purchase of items'
+                      }
+                  },
+                  tooltip: {
+                      formatter: function() {
+                          return   this.series.name +':' +
+                                  Highcharts.numberFormat(this.y, 2) + ' Bought';
+                      }
+                  },
+
+                  series: [
+                      <% @orders_aggregated.each do |order| %>
+                      {
+                          name: "<%= order.item.name %>",
+                          bla: "<%= order.created_at %>",
+                          data: [<%= order.sum_items %>]
+                      },
+                      <% end %>
+                  ]
+
+              });
+          });
+      </script>
+        <script type="text/javascript" charset="utf-8">
+            $(function() {
+                new Highcharts.Chart({
+
+                    chart: {
+                        renderTo: 'pie',
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false  ,
+                        type: 'pie'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                color: '#000000',
+                                connectorColor: '#000000',
+                                formatter: function() {
+                                    return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage) +' %';
+                                }
+                            }
+                        }
+                    },
+                    title: {
+                        text: 'Performance of the Products'
+                    },
+                    series: [{
+
+                        name: 'Quantity',
+                        data: [
+
+                            <% @orders_aggregated.each do |order| %>
+                            {
+                                name:'<%= order.item.name %>',
+                                y: <%= order.sum_items %>
+                            },
+                            <%end%>
+
+                        ]
+                    }]
+
+                });
+            });
+        </script>
+    <div style="float: right;">
+    <%= form_tag order_seller_history_path, :method => "get" %>
+       Select the state of the items to see report off <%= select_tag(:state_report, options_for_select([["Processing", 0],["Shipped", 1],["Delivered", 2],["Cancelled", 3],["All", 4], ], @state_report)) %>
+    <%= submit_tag "Select" %>
+    </div>
+    <div style="float: right;">
+        <%= form_tag order_seller_history_path, :method => "get" %>
+      Select Number of your top products to show
+      <%= text_field_tag :no_of_items, @no_of_items %>
+      <%= submit_tag "Select" %>
+    </div>
+    <table>
+      <tr>
+        <td><div id="bar" style="width:560px; height:300px;"></div></td>
+        <td><div id="pie" style="width:560px; height:300px;"></div></td>
+      </tr>
+    </table>
+
+      <!--%= select_tag :colour, options_for_select([["Red", "red"], ["Green", "green"]], @link.colour) %-->
+      <%= form_tag order_seller_history_path, :method => "get" %>
+      <%= select_tag(:random, options_for_select([["All", 0], ["Aggregated", 1]], @aggregate)) %>
+      <%= submit_tag "Select" %>
+      <br/>
+      <br/>
+    <table class="table">
+      <tr>
+        <th><b>Item</b></th>
+        <th><b>Status</b></th>
+        <th><b>Quantity</b></th>
+        <th><b>Buyer</b></th>
+
+      </tr>
+      <% if @orders %>
+          <% @orders.each do |order| %>
+
+              <tr>
+                <% item = Item.find(order.item_id) %>
+                <td><%= link_to item.name, item %></td>
+                <%if @aggregate == 1   %>
+                    <td><%= @states[order.state] %></td>
+
+                <% else %>
+                    <td><%= link_to @states[order.state], order %></td>
+                    <td><%= order.item_quantity %></td>
+
+                <%end%>
+
+                <td><%= link_to User.find(order.buyer_id).email, @user %></td>
+
+              </tr>
+
+          <% end %>
+      <%else%>
+          You have no orders currently. Search our list of items to find the one you need
+      <%end%>
+
+    </table>
+<%else%>
+    Please upgrade your account to Seller .
+<%end%>
+
+<br />
+

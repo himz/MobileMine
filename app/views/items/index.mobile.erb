@@ -1,0 +1,9 @@
+
+
+
+    <ul data-role="listview" data-divider-theme="a">
+      <li data-role="list-divider" ><h4>Result of "<%= @keyword['name_contains'] %>" = <%= @items.count %></h4></li>
+
+      <%= render :partial => 'layouts/item_listing' %>
+      <br/>
+    </ul>

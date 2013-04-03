@@ -1,0 +1,32 @@
+<!-- Item listing is generic, can be used by search results -->
+
+    <% @items.each do |item|%>
+        <% if item.activated? %>
+
+              <li>
+                 <a href="/items/<%=item.id%>">
+
+                   <%= image_tag(item.image_url, :size => "150x100")   %>
+
+
+
+                  <b><%=item.name%></b> <br/>
+
+                   <% if item.auction_flag then%>
+                       <!--TODO:Add a nice color-->
+                       <% auction=Auction.find(item.auction_id) %>
+                       Last Bid: $<%= auction.bid_amount %>
+                       <br/> Auction expiring: <br/>
+                       <%= auction.end_time.getlocal.strftime("%Y-%m-%d %H:%M")
+                       %>
+                   <% else %>
+                       Price: $<%= item.price%> </br>
+                       Availability: <%= item.availability%>
+                   <% end %>
+
+                  </a>
+
+            </li>
+        <% end %>
+    <% end %>
+

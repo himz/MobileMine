@@ -1,0 +1,35 @@
+<h1 xmlns="http://www.w3.org/1999/html"></h1>
+
+<table>
+    <tr>
+        You Last Signed In At :
+        <%= current_user.last_sign_in_at%><br>
+  </tr>
+<br />
+  <ul>
+    <li><%=link_to "View User Information", users_show_path %></li>
+    <li><%=link_to "Modify User Information", edit_user_registration_path %></li>
+
+   </ul>
+  <h3>BUY</h3>
+  <ul>
+    <li><%=link_to "Orders History", orders_path %></li>
+    <li><%=link_to "Current Orders", orders_path %></li>
+  </ul>
+
+  <% if current_user.user_type ==1 %>
+
+  <h3><%= link_to "Activate Seller Account", users_activate_seller_path %></h3>
+    <%else%>
+  <h3>SELL</h3>
+
+  <ul>
+    <li><%=link_to "My selling items", user_items_index_path %></li>
+    <li><a href="/">Current Sales</a></li>
+    <li><a href="/">Sales History</a></li>
+    <li><%=link_to "Sell new item", user_items_new_path %></li>
+  </ul>
+      <%end%>
+</table>
+
+<br />

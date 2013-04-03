@@ -1,0 +1,55 @@
+<div class="row">
+
+
+
+
+  <div class="span9">
+
+
+    <p id="notice"><%= notice %></p>
+    <div class="item_image"><%= image_tag(@item.image_url, "style" => "width: 100%;height : auto;")%></div>
+    <div class="item_content" >
+     <h1><%= @item.name %></h1>
+
+            <b>Manufacturer: </b><%= @item.manufacturer %><p>
+            <b>Price: </b>$<%= @item.price %><p>
+            <b>Available: </b> <%= @item.availability %>
+
+      <tr><br/>
+        <% if user_signed_in?%>
+            <% if current_user.id == @item.user_id %>
+                <%= link_to("Edit", {:action => "user_edit_item", :id => @item.id}, class: "btn btn-large" ) %>
+                <%= link_to("Delete",  {:action => "user_delete_item", :id => @item.id} ,:method=> :delete, :confirm => 'are you sure?', class: "btn btn-large") %>
+                <% if @item.auction_flag == true %>
+                    <%= link_to("Edit Auction", {:controller=>"auctions",:action => "seller_edit", :id => @item.auction_id}, class: "btn btn-large") %>
+                <%end%>
+
+            <% else %>
+                <!--% if @item.availability.to_i > 0 %> <!--TODO: Fix the model so that availability is an integer -->
+                    <% if @item.auction_flag %>
+                        <center><td><%= link_to 'Bid', edit_auction_path(@item.auction_id, :item=>@item), "data-role" =>"button" %></td>
+                        </center>
+                    <% else %>
+                        <center><td><%= link_to 'Buy', new_order_path(:item=>@item),  "data-role" =>"button" %></td>
+                        </center>
+                    <% end %>
+                <!--%else%-->
+                 <!--   Out of stock!-->
+                <!--%end%-->
+            <% end %>
+        <% else %>
+            <br/><br/><br/>
+            <h4> Please Sign in to Buy the Product </h4>
+
+        <% end %>
+      </tr>
+    </div>
+  </div>
+
+  <div>
+        <h4><br/>  Description</h4>
+        <%=   @item.description %>      <br/>
+        <%= link_to 'Read more about specifications, reviews, compare with other products...', "http://www.phonearena.com/search/term/"+@item.name %>
+   </div>
+
+</div>

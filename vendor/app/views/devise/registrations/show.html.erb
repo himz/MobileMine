@@ -1,0 +1,30 @@
+<!--Item.all.sort{ |a,b| a.created_at <=> b.created_at }-->
+<div class="row">
+  <!-- Start Sidebar -->
+  <div class="span3">
+    <%= render "layouts/sidebar" %>
+  </div>
+  <!-- End Sidebar -->
+  <div class="span7 popular_products">
+    <h1>User Profile</h1>
+    <br/>
+    <table cellpadding="10">
+      <tr>
+        <td align="right"><b>Full Name</b></td>
+        <td><%= current_user.first_name %> <%= current_user.last_name %></td>
+      </tr>
+      <tr>
+        <td align="right"><b>Email</b></td>
+        <td><%= current_user.email %></td>
+      </tr>
+      <tr>
+        <td align="right"><b>Address</b></td>
+        <td><%= current_user.address %></td>
+      </tr>
+      <tr>
+        <td align="right"><b>Phone Number</b></td>
+        <td><%= current_user.phone_number%></td>
+      </tr>
+    </table>
+  </div>
+</div>

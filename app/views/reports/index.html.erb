@@ -1,0 +1,42 @@
+<table>
+    <tr>
+      <td colspan="2">
+        <div class="well">Dashboard</div>
+      </td>
+    </tr>
+    <tr>
+     <td>
+       <%= render :partial => 'reports/chart_pie_sales_products' %>
+       <%= link_to 'Click for details', reports_sales_details_path %>
+
+     </td>
+     <td>
+       <div class="alert">
+         <%= link_to 'Total number of Users on the system : '  , admin_users_index_path, title: 'Manage all Users in the system', rel: 'tooltip'  %> <%= @total_users[0].total %>
+         <br/>
+         <%= link_to 'Total number of Products listed : '  , admin_items_index_path, title: 'Manage Items listed on the system', rel: 'tooltip'  %><%= @total_items[0].total %>
+
+         <br/>
+
+         <%= link_to 'Total number of categories of products :  '  , admin_category_index_path , title: 'Manage Categories of the products listed on the system', rel: 'tooltip'%>  <%= @total_categories[0].total %>
+         <br/>
+         <%= link_to 'Total number of Sellers on the system : '  , reports_seller_details_path, title: 'See details of sellers on the system with at least one running sales', rel: 'tooltip'%><%= @total_sellers[0].total %>
+         <br/>
+         Total number of admins : <%= @total_admins[0].total %>
+         <br/>
+         Total Sales of the system in last week : $<%= @total_sales_last_week_price[0].total %>
+       </div>
+
+     </td>
+    </tr>
+    <tr>
+      <td>
+        <%= render :partial => 'reports/chart_buyers' %>
+        <%= link_to 'Click for details', reports_buyer_details_path %>
+      </td>
+      <td>
+        <%= render :partial => 'reports/chart_sellers_price' %>
+        <%= link_to 'Click for details', reports_seller_details_path %>
+      </td>
+    </tr>
+</table>

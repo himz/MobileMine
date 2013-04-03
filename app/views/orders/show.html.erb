@@ -1,0 +1,42 @@
+<!-- Show order details. The congrats message should be shown only first time. Status should be read, not hardcoded. TODO!-->
+<% if notice %>
+    <div class="alert-danger"><%= notice %></div>
+<% end %>
+
+<% @item = Item.find(@order.item_id) %>
+<div class="alert alert-success"><%= link_to @item.name, item_path(@item)  %></div>
+<div class="well">
+  <% if @order.seller_id == current_user.id %>
+      <%= User.find(@order.buyer_id).email %> purchased this item.<br/>
+      <br/>
+      <% if @order.state == 0 %>
+          <%= link_to "Ship item", order_process_path(:id=>@order.id, :state=>1) ,:class=>"btn btn-warning" %>
+      <% elsif @order.state == 1 %>
+          You have shipped the item, awaiting confirmation from user.
+      <% elsif @order.state == 2 %>
+          Item has been delivered to the user and the payment transfered to your account
+      <% else %>
+          This order has been cancelled
+      <% end %>
+  <% elsif @order.buyer_id == current_user.id%>
+      Your order is now <%= @states[@order.state]%>
+      <br/><br/>
+      Your reference Number for the order :
+      <%= @order.id + 579726%>
+      <br/><br/>
+      <% if @order.state == 0 %>
+          <%= link_to "Cancel order", order_process_path(:id=>@order.id, :state=>3) ,:class=>"btn btn-danger" %>
+      <% elsif @order.state == 1 %>
+          <%= link_to "Confirm receipt of item", order_process_path(:id=>@order.id, :state=>2) ,:class=>"btn btn-success" %>
+      <% end %>
+  <% else %>
+      <br/>
+      <br/>
+      Your order is now <%= @states[@order.state]%>
+      <br/>
+      <br/>
+      Your reference Number for the order :
+      <%= @order.id + 579726%>
+  <%end%>
+</div>
+</div>

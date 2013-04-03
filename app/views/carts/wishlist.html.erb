@@ -1,0 +1,51 @@
+<div class="row">
+  <!-- start side-bar -->
+  <div class="span3">
+    <%= render "layouts/sidebar" %>
+  </div>
+  <!-- end side-bar -->
+
+  <!-- start listing item -->
+  <div class="span7 popular_products">
+    <p id="notice"><%= notice %></p>
+    <h4>Wish List</h4><br>
+  </div>
+  <div class="span9">
+    <hr />
+    <% @lineItems.each do |line_item|%>
+        <div class="row">
+          <div class="span2">
+            <center><%= link_to   image_tag(line_item.item.image_url, :class => 'thumbnail_cart_image'), line_item.item %></center>
+          </div>
+
+          <div class="span5">
+            <h5><%=  link_to line_item.item.name , line_item.item %></h5>
+            <p><%=  line_item.item.description %></p>
+          </div>
+
+          <div class="span2">
+            <p>Price: $<%=  line_item.item.price %></p>
+
+          </div>
+
+          <div class="span2">
+            <p>Availability:
+            <%  if line_item.item.availability > 0 %>
+              <font color="green">Yes (<%= line_item.item.availability %>)</font>
+              <p><%= link_to "Move To Cart", line_items_change_type_path(:item=>line_item, :type=>0), :class => 'btn btn-primary' %></p>
+
+            <% else %>
+              <font color="red">No</font>
+              <p><%= link_to "Unavailable", '#', :class => 'btn btn-danger' %></p>
+
+            <% end %>
+            </p>
+                        <p><%= link_to 'Delete', line_items_delete_path(line_item), confirm: 'Are you sure', method: :delete %></p>
+
+          </div>
+        </div>
+        <hr />
+    <% end %>
+  </div>
+</div>
+

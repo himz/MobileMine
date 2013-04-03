@@ -1,0 +1,17 @@
+<!--Item.all.sort{ |a,b| a.created_at <=> b.created_at }-->
+<div class="row">
+  <!-- Start Sidebar -->
+  <div class="span3">
+    <%= render "layouts/sidebar" %>
+  </div>
+  <!-- End Sidebar -->
+
+  <div class="span7 popular_products">
+    <h4>Auctions</h4><br>
+    <%=  will_paginate @items %>
+    <ul class="thumbnails">
+      <%= render :partial => 'layouts/item_listing' %>
+    </ul>
+    <%=  will_paginate @items %>
+  </div>
+</div>

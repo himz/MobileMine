@@ -1,0 +1,32 @@
+<%= render :partial => 'reports/chart_sellers_price' %>
+<%= form_tag reports_seller_details_path, :method => "get" %>
+<%= label_tag "Select Number of your top products to show in chart"  %>
+<%= text_field_tag :no_of_items, @no_of_items %>
+<%= submit_tag "Select" %>
+<table cellpadding="10" border="0" class="table">
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Purchases($)</th>
+    <th>Show</th>
+    <th>Action</th>
+    <th>Delete</th>
+
+  </tr>
+
+  <% @data_sellers_price.each do |buyer| %>
+      <% if buyer.activated? then font="#009900" else font="#990000" end %>
+      <tr>
+        <td><font color="<%=font%>"><%= buyer.first_name %></font></td>
+        <td><font color="<%=font%>"><%= buyer.last_name %></font></td>
+        <td><font color="<%=font%>"><%= buyer.sum_price %></font></td>
+        <td><%= link_to link_to image_tag("icon/magnify.png", :border => 0), admin_users_path(buyer.user_id) %></td>
+        <% if buyer.activated?%>
+            <td><%= link_to 'Deactivate', admin_users_deactivate_path(buyer.user_id)%></td>
+        <% else %>
+            <td><%= link_to 'Activate', admin_users_activate_path(buyer.user_id)%></td>
+        <% end %>
+        <td><%= link_to image_tag("icon/delete.png", :border => 0), admin_users_delete_path(buyer.user_id), confirm: 'Are you sure you want to delete the item "'+buyer.first_name+'"', method: :delete %></td>
+      </tr>
+  <% end %>
+</table>

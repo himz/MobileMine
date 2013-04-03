@@ -1,0 +1,16 @@
+<h1>Bid for item</h1>
+<!--Creating a new order/buy -->
+<% if(@auction.seller_id != @current_user.id) %>
+<%= form_tag auction_increase_bid_path(:auction=>@auction),validate:true %>
+<p>Are you sure you want increase the bid for <%= @item.name %>?</p>
+
+<label>Bid :</label>     $<%= text_field_tag(:bid_amount, Auction.find(@item.auction_id).bid_amount) %>
+<!--%= select_tag :colour, options_for_select([["Red", "red"], ["Green", "green"]], @link.colour) %-->
+<div class="field">
+  <%= submit_tag "Confirm bid",class: "btn" %>
+</div>
+
+<%else%>
+    Why would you want to bid for your own item?    <br/>
+<%end%>
+<%= link_to 'Back', orders_path %>

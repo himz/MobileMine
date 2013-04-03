@@ -1,0 +1,87 @@
+<div class="row">
+
+<div class="span3">
+
+  <%= render "layouts/sidebar" %>
+
+</div>
+
+
+  <div class="span9">
+
+
+    <p id="notice"><%= notice %></p>
+    <div class="item_image"><%= image_tag(@item.image_url)%></div>
+    <div class="item_content" >
+      <table cellpadding="10">
+        <tr>
+          <td><h1><%= @item.name %></h1></td>
+        </tr>
+        <tr>
+          <td>
+            <h4>Manufacturer</h4>
+          </td>
+          <td>
+            <%= @item.manufacturer %>
+          </td>
+
+        </tr>
+        <tr>
+          <td>
+            <h4>Price</h4>
+          </td>
+          <td>
+            <% if @item.auction_flag %>
+            $<%= Auction.find(@item.auction_id).bid_amount%>
+            <% else %>
+            $<%= @item.price %></td>
+            <% end %>
+        </tr>
+        <tr>
+          <td>
+            <h4>Available</h4>
+          </td>
+          <td><%= @item.availability %></td>
+        </tr>
+
+      </table>
+      <tr><br/>
+        <% if user_signed_in?%>
+            <% if current_user.id == @item.user_id %>
+                <%= link_to("Edit", {:action => "user_edit_item", :id => @item.id}, class: "btn btn-large" ) %>
+                <%= link_to("Delete",  {:action => "user_delete_item", :id => @item.id} ,:method=> :delete, :confirm => 'are you sure?', class: "btn btn-large") %>
+                <br/><br/>
+                <% if @item.auction_flag == true %>
+                    <%= link_to("Edit Auction", {:controller=>"auctions",:action => "seller_edit", :id => @item.auction_id}, class: "btn btn-large") %>
+                    <%= link_to("Auction details", {:controller=>"auctions",:action => "show", :id => @item.auction_id}, class: "btn btn-large") %>
+                <%end%>
+
+            <% else %>
+                <!--% if @item.availability.to_i > 0 %> <!--TODO: Fix the model so that availability is an integer -->
+                    <% if @item.auction_flag %>
+                        <center><td><%= link_to 'Bid', edit_auction_path(@item.auction_id, :item=>@item), class: "btn btn-large" %></td>
+                        </center>
+                    <% else %>
+                        <center><td><%= link_to 'Buy', new_order_path(:item=>@item), class: "btn btn-large" %></td>
+                        </center>
+                    <% end %>
+                <!--%else%-->
+                 <!--   Out of stock!-->
+                <!--%end%-->
+            <% end %>
+        <% else %>
+            <br/><br/><br/>
+            <h4> Please Sign in to Buy the Product </h4>
+
+        <% end %>
+      </tr>
+    </div>
+  </div>
+
+  <div>
+        <h4><br/>  Description</h4>
+        <%=   @item.description %>      <br/>
+        <%= link_to 'Read more about specifications, reviews, compare with other products...', "http://www.phonearena.com/search/term/"+@item.name %>
+   </div>
+
+</div>

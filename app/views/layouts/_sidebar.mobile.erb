@@ -1,0 +1,10 @@
+
+<ul data-role="listview" data-divider-theme="a">
+  <li data-role="list-divider" >Categories</li>
+    <% @categories.each do |category| %>
+         <li><%= link_to   category.name, category %></li>
+    <% end %>
+  <br/>
+</ul>
+
+

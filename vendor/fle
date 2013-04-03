@@ -1,0 +1,80 @@
+                auctions GET    /auctions(.:format)                    auctions#index
+                         POST   /auctions(.:format)                    auctions#create
+             new_auction GET    /auctions/new(.:format)                auctions#new
+            edit_auction GET    /auctions/:id/edit(.:format)           auctions#edit
+                 auction GET    /auctions/:id(.:format)                auctions#show
+                         PUT    /auctions/:id(.:format)                auctions#update
+                         DELETE /auctions/:id(.:format)                auctions#destroy
+    auction_increase_bid        /auctions/increase_bid(.:format)       auctions#increase_bid
+    auction_change_state        /auctions/change_state(.:format)       auctions#change_state
+   auction_close_auction        /auctions/close_auction(.:format)      auctions#close_auction
+     auction_seller_edit        /seller/update_auction(.:format)       auctions#seller_edit
+          user_items_new GET    /items/new_item(.:format)              items#new_item
+        user_items_index GET    /items/user_items_list(.:format)       items#user_items_list
+         user_items_edit GET    /items/user_edit_item(.:format)        items#user_edit_item
+       user_items_delete GET    /items/user_delete_item(.:format)      items#user_delete_item
+            credit_infos GET    /credit_infos(.:format)                credit_infos#index
+                         POST   /credit_infos(.:format)                credit_infos#create
+         new_credit_info GET    /credit_infos/new(.:format)            credit_infos#new
+        edit_credit_info GET    /credit_infos/:id/edit(.:format)       credit_infos#edit
+             credit_info GET    /credit_infos/:id(.:format)            credit_infos#show
+                         PUT    /credit_infos/:id(.:format)            credit_infos#update
+                         DELETE /credit_infos/:id(.:format)            credit_infos#destroy
+       admin_users_index GET    /admin/users(.:format)                 admin_users#index
+      admin_users_delete GET    /admin/users/delete/:id(.:format)      admin_users#delete
+             admin_users GET    /admin/users/:id(.:format)             admin_users#show
+  admin_users_deactivate GET    /admin/users/deactivate/:id(.:format)  admin_users#deactivate
+    admin_users_activate GET    /admin/users/activate/:id(.:format)    admin_users#activate
+       admin_items_index GET    /admin/items(.:format)                 admin_items#index
+      admin_items_delete GET    /admin/items/delete/:id(.:format)      admin_items#delete
+             admin_items GET    /admin/items/:id(.:format)             admin_items#show
+  admin_items_deactivate GET    /admin/items/deactivate/:id(.:format)  admin_items#deactivate
+    admin_items_activate GET    /admin/items/activate/:id(.:format)    admin_items#activate
+    admin_category_index GET    /admin/categories(.:format)            admin_categories#index
+   admin_category_delete GET    /admin/categories/delete/:id(.:format) admin_categories#delete
+        admin_categories GET    /admin/categories/:id(.:format)        admin_categories#show
+                  orders GET    /orders(.:format)                      orders#index
+                         POST   /orders(.:format)                      orders#create
+               new_order GET    /orders/new(.:format)                  orders#new
+              edit_order GET    /orders/:id/edit(.:format)             orders#edit
+                   order GET    /orders/:id(.:format)                  orders#show
+                         PUT    /orders/:id(.:format)                  orders#update
+                         DELETE /orders/:id(.:format)                  orders#destroy
+        new_user_session GET    /users/sign_in(.:format)               sessions#new
+            user_session POST   /users/sign_in(.:format)               sessions#create
+    destroy_user_session GET    /users/sign_out(.:format)              sessions#destroy
+           user_password POST   /users/password(.:format)              passwords#create
+       new_user_password GET    /users/password/new(.:format)          passwords#new
+      edit_user_password GET    /users/password/edit(.:format)         passwords#edit
+                         PUT    /users/password(.:format)              passwords#update
+cancel_user_registration GET    /users/cancel(.:format)                registrations#cancel
+       user_registration POST   /users(.:format)                       registrations#create
+   new_user_registration GET    /users/sign_up(.:format)               registrations#new
+  edit_user_registration GET    /users/edit(.:format)                  registrations#edit
+                         PUT    /users(.:format)                       registrations#update
+                         DELETE /users(.:format)                       registrations#destroy
+           users_profile        /users/profile(.:format)               registrations#profile
+              users_show        /users/show(.:format)                  registrations#show
+              categories GET    /categories(.:format)                  categories#index
+                         POST   /categories(.:format)                  categories#create
+            new_category GET    /categories/new(.:format)              categories#new
+           edit_category GET    /categories/:id/edit(.:format)         categories#edit
+                category GET    /categories/:id(.:format)              categories#show
+                         PUT    /categories/:id(.:format)              categories#update
+                         DELETE /categories/:id(.:format)              categories#destroy
+                   items GET    /items(.:format)                       items#index
+                         POST   /items(.:format)                       items#create
+                new_item GET    /items/new(.:format)                   items#new
+               edit_item GET    /items/:id/edit(.:format)              items#edit
+                    item GET    /items/:id(.:format)                   items#show
+                         PUT    /items/:id(.:format)                   items#update
+                         DELETE /items/:id(.:format)                   items#destroy
+               new_index GET    /latest(.:format)                      items#new_items_list
+             admin_index GET    /admin_users/items(.:format)           items#admin_index
+             admin_index GET    /admin_users(.:format)                 items#admin_index
+               admin_new GET    /admin_users/items/new(.:format)       items#admin_new
+              admin_edit GET    /admin_users/items/edit/:id(.:format)  items#admin_edit
+              admin_show GET    /admin_users/items/show/:id(.:format)  items#admin_show
+            create_order        /orders/create(.:format)               orders#create
+              home_index GET    /home/index(.:format)                  home#index
+                    root        /                                      home#index

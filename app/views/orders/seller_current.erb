@@ -1,0 +1,87 @@
+<!-- display list of orders. This can be used for user admin_users -->
+<% if  user_signed_in? and current_user.user_type == 2 %>
+<h1>My Sales Under Processing</h1>
+
+    <table class="table">
+  <tr>
+    <th><b>Item</b></th>
+    <th><b>Status</b></th>
+    <th><b>Buyer</b></th>
+    <!--th><b>Ship</b></th-->
+  </tr>
+     <center>
+      <script type="text/javascript" charset="utf-8">
+          $(function() {
+              new Highcharts.Chart({
+
+                  chart: {
+                      renderTo: 'container',
+                      type: 'bar'
+                  },
+                  title: {
+                      text: 'Performance of the Products'
+                  },
+                  xAxis: {
+                      title: {
+                          text: 'Items'
+                      }            ,
+                      categories:[]
+                  },
+                  yAxis: {
+                      title: {
+                          text: 'Purchase of items'
+                      }
+                  },
+                  tooltip: {
+                      formatter: function() {
+                          return   this.series.name +':' +
+                                  Highcharts.numberFormat(this.y, 2) + ' Bought';
+                      }
+                  },
+
+                  series: [
+                      <% @orders_aggregated.each do |order| %>
+                      {
+                          name: "<%= order.item.name %>",
+                          bla: "<%= order.created_at %>",
+                          data: [<%= order.sum_items %>]
+                      },
+                      <% end %>
+                  ]
+
+              });
+          });
+</script>
+
+      <div id="container" style="width:560px; height:300px;"></div>   <br/>
+     </center>
+      <!--%= select_tag :colour, options_for_select([["Red", "red"], ["Green", "green"]], @link.colour) %-->
+      <%= form_tag order_seller_current_path, :method => "get" %>
+      <%= select_tag(:random, options_for_select([["All", 0], ["Aggregated", 1]], @aggregate)) %>
+      <%= submit_tag "Select" %>
+      <br/> <br/>
+<% if @orders %>
+<% @orders.each do |order| %>
+
+  <tr>
+    <% item = Item.find(order.item_id) %>
+    <td><%= link_to item.name, item %></td>
+    <%if @aggregate == 1  %>
+        <td><%= @states[order.state] %></td>
+    <% else %>
+        <td><%= link_to @states[order.state], order %></td>
+    <%end%>
+    <td><%= link_to User.find(order.buyer_id).email, @user %></td>
+    <!--<td><!--%= link_to 'Ship', @user, :class => 'btn btn-primary' %></td-->
+  </tr>
+<% end %>
+<%else%>
+  You have no orders currently. Search our list of items to find the one you need
+<%end%>
+
+</table>
+<%else%>
+    Please upgrade your account to Seller .
+<%end%>
+
+<br />

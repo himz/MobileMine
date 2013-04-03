@@ -1,0 +1,12 @@
+<ul class="breadcrumb">
+  <li>Categories</li>
+</ul>
+<div class="span3 product_list">
+  <ul class="nav">
+    <% @categories.each do |category| %>
+         <li><%= link_to   category.name, category %></li>
+    <% end %>
+  </ul>
+  <br/>
+  <%= link_to   image_tag("ads/2.jpg", :size => "200x500"), "http://www.apple.com" %>
+</div>

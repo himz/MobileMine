@@ -1,0 +1,29 @@
+<!-- Displays list of credit cards. This is not currently available to users. We can use this to personalise the users page -->
+<h1>Listing credit_infos</h1>
+<table>
+  <tr>
+    <th>User</th>
+    <th>Billing address</th>
+    <th>Credit card no</th>
+    <th>Zipcode</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @credit_infos.each do |credit_info| %>
+  <tr>
+    <td><%= credit_info.user_id %></td>
+    <td><%= credit_info.billing_address %></td>
+    <td><%= credit_info.credit_card_no %></td>
+    <td><%= credit_info.zipcode %></td>
+    <td><%= link_to 'Show', credit_info %></td>
+    <td><%= link_to 'Edit', edit_credit_info_path(credit_info) %></td>
+    <td><%= link_to 'Destroy', credit_info, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Credit info', new_credit_info_path %>

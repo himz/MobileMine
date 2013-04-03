@@ -1,0 +1,30 @@
+<!-- Item listing is generic, can be used by search results -->
+<div class="span7 popular_products">
+  <ul class="thumbnails">
+    <!--
+    <  Remove the comment for pagination will_paginate @items >-->
+        <% @items.each do |item|%>
+            <li class="span2" xmlns="http://www.w3.org/1999/html">
+              <div class="thumbnail">
+                <center><%= link_to   image_tag(item.image_url, :class => 'thumbnail_image'), item %></center>
+                <div class="caption">
+                  <b><%=  link_to truncate(item.name, :length => 15) , item %></b> <br/>
+
+                  <% if item.auction_flag then%>
+                      <!--TODO:Add a nice color-->
+                      <% auction=Auction.find(item.auction_id) %>
+                      Last Bid: <%= number_to_currency(auction.bid_amount, :unit => "$") %>
+                      Auction expiring <br/>
+                      <%= auction.end_time.getlocal.strftime("%Y-%m-%d %H:%M")
+                      %>
+                      <% else %>
+                      Price: <%= number_to_currency(item.price.to_f, :unit => "$") %> </br>
+                      Availability: <%= item.availability%>
+                      <% end %>
+                </div>
+              </div>
+            </li>
+        <% end %>
+    <!--  Remove the comment for pagination will_paginate @items -->
+   </ul>
+</div>

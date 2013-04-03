@@ -1,0 +1,75 @@
+<!--TODO: Notice should be flashing not bold-->
+<script>
+  function loadImage(){
+     $('#t_image').html('<img src="'+$('#image_url').val()+'" class="thumbnail_image" />');
+  }
+</script>
+<%= form_for(@item) do |f| %>
+    <div class="item_image"><br/><h4>Image URL</h4><br/>
+      <%= f.text_field :image_url, :id => 'image_url', :onchange => 'loadImage()', :onload => 'loadImage()' %><br/>
+      <div id="t_image"><img alt="" src="http://placehold.it/200x200" /></div>
+    </div>
+
+    <div class="item_content" >
+      <table cellpadding="10">
+        <tr>
+          <td>
+            <h4>Name</h4>
+            <%= f.text_field :name %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h4>Manufacturer</h4>
+            <%= f.text_field :manufacturer %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h4>Price in $</h4>
+            <%= f.text_field :price %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h4>Availability</h4>
+            <%= f.text_field :availability %>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+    </div>
+    <div class="">
+
+      <table cellpadding="10">
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <tr>
+          <td colspan="10"><h4>Description</h4><br/>
+            <%= f.text_area :description, :cols=>110, :rows=>5%></td>
+        </tr>
+        <tr>
+          <td>
+            <h4>Choose categories</h4><br/>
+            <% @categories.each do |category|  %>
+               <%= check_box_tag "category[]", category.id, @category_ids.include?(category.id)%> <%= category.name %><br/>
+            <% end %>
+          </td>
+
+        </tr>
+        <tr>
+
+          <td>
+            <h4>Featured</h4><br/>
+            <%= f.check_box :featured, {}, "true", "false" %> Featured
+          </td>
+        </tr>
+
+        <td colspan="2" align="right" ><div><div><%= f.submit :class => 'btn btn-primary' %></div></div></td>
+        </tr>
+      </table>
+    </div>
+<% end %>
+<% if @item.image_url != nil %>
+<script> loadImage() </script>
+<% end %>

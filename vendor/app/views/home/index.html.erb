@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="span3">
+    <%= render "layouts/sidebar" %>
+  </div>
+ <div class="span9">
+    <div id="myCarousel" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="item active">
+          <%=  link_to image_tag('/upload_image/1_slide.jpg'), "#"%>
+          <div class="carousel-caption"  />
+            <h4>Iphone 5</h4>
+            <p>The best Iphone since Iphone</p>
+          </div>
+        </div>
+        <div class="item">
+          <%=  link_to image_tag('/upload_image/2_slide.jpg')%>
+          <div class="carousel-caption">
+            <h4>Galaxy S6</h4>
+            <p>The thinnest phone ever !!</p>
+          </div>
+        </div>
+      <div class="item">
+        <%=  link_to image_tag('/upload_image/3_slide.jpg')%>
+        <div class="carousel-caption">
+          <h4>Galaxy S6</h4>
+          <p>The thinnest phone ever !!</p>
+        </div>
+      </div>
+      </div>
+
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+    </div>
+  </div>
+
+  <div class="span7 popular_products">
+    <h4>Popular products</h4><br>
+    <ul class="thumbnails">
+      <%@items = @popular%>
+      <%= render :partial => 'thumbnail_listing' %>
+    </ul>
+  </div>
+  <div class="span7 popular_products" style="float: right;">
+    <h4>Featured products</h4><br>
+    <ul class="thumbnails">
+      <%@items = @featured    %>
+      <%= render :partial => 'thumbnail_listing' %>
+    </ul>
+  </div>
+</div>
+
+</div>

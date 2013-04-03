@@ -1,0 +1,30 @@
+<ul class="breadcrumb">
+  <li>Categories</li>
+</ul>
+<div class="span3 product_list">
+  <ul class="nav">
+    <% @categories.each do |category| %>
+         <li><%= link_to   category.name, category %></li>
+    <% end %>
+  </ul>
+  <br/>
+<% if current_user == 555 %>
+<div id="cart">
+    cart_id = <%= @cart.id %>
+    <%= hidden_div_if(@cart.line_items.empty?, :id => "cart") do %>
+            <%= render @cart %>
+    <% end %>
+
+</div>
+<% end %>
+  <%= link_to   image_tag("ads/2.jpg", :size => "200x500"), "http://www.apple.com" %>
+  <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=164915040221827";
+      fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+  <div class="fb-like-box" data-href="https://www.facebook.com/MobileMine" data-width="200" data-height="200" data-show-faces="true" data-stream="true" data-header="true"></div>
+
+</div>

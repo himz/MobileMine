@@ -1,0 +1,27 @@
+<h1>Registered Credit Cards</h1>
+ <br/>
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>Card number</th>
+    <th>CVV</th>
+    <th>Expiry date</th>
+
+
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @user.cards.each do |card| %>
+  <tr>
+    <td><%= card.card_number.decrypt(KEYPAIR_PASSWORD).sub(/^([0-9]+)([0-9]{4})$/) { '*' * $1.length + $2 }%></td>
+    <td><%= card.cvv %></td>
+    <td><%= card.expiry_date %></td>
+
+
+    <td><%= link_to 'Delete', card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+<td ><a class="btn btn-primary pull-right" href="/cards/new">Add A New Card</a></td>
+
+<br/>

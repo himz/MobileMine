@@ -1,0 +1,66 @@
+<ul data-role="listview" data-divider-theme="a">
+<li data-role="list-divider" ><h4><%= @item.name %></h4></li>
+
+
+
+
+  <p id="notice"><%= notice %></p>
+  <%= image_tag(@item.image_url, "style" => "width  : 100%;height : auto;")%>
+
+    <table cellpadding="10">
+
+      <tr>
+        <td><h4>Manufacturer</h4></td>
+        <td><%= @item.manufacturer %></td>
+      </tr>
+
+      <% if @item.auction_flag %>
+          <% auction=Auction.find(@item.auction_id) %>
+          <tr>
+            <td><h4>Last Bid</h4></td>
+            <td> $<%= auction.bid_amount %></td>
+          </tr>
+
+          <tr>
+            <td><h4>Auction expiring</h4></td>
+            <td><%= auction.end_time.getlocal.strftime("%Y-%m-%d %H:%M")%></td>
+          </tr>
+
+
+
+
+      <% else %>
+          <tr>
+            <td><h4>Availability</h4></td>
+            <td><%= @item.availability %></td>
+          </tr>
+          <tr>
+            <td><h4>Price</h4></td>
+            <td> $<%= @item.price %></td>
+          </tr>
+      <% end %>
+
+    </table>
+    <tr><br/>
+      <% if user_signed_in?%>
+          <% if current_user.id == @item.user_id %>
+
+          <% else %>
+              <% if current_user.user_type != 0 %>
+                  <% if @item.auction_flag %>
+                      <%= link_to 'Bid', edit_auction_path(@item.auction_id, :item=>@item),"data-role"=>"button" %>
+                  <% else %>
+
+
+                  <% end %>
+
+              <% end %>
+          <% end %>
+      <% else %>
+
+      <% end %>
+    </tr>
+
+
+
+</ul>

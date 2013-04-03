@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>BuyThisSellThat</title>
+  <%= stylesheet_link_tag    "/jqmobile/jquery.mobile-1.2.0.min.css" %>
+  <%= javascript_include_tag "jquery","/jqmobile/jquery.mobile-1.2.0.min.js"%>
+  </script>
+
+
+  <%= csrf_meta_tags %>
+</head>
+
+
+
+
+
+
+<body>
+
+<div data-role="page" >
+
+  <div data-role="header" data-theme="d">
+    <%= link_to 'Back', :back, "class" => "ui-btn-left", "data-theme" => "d", "data-icon" =>"back" %>
+    <!--<h1 >BuyThisSellThat</h1>       -->      <h1 ></h1>
+     <%= link_to 'Home', home_index_path, "class" => "ui-btn-right", "data-theme" => "d",  "data-icon" =>"home" %>
+
+
+
+
+     <div style="back">
+                <%= form_for @search do |f| %>
+                    <%= f.text_field :name_contains %>
+                 <%= f.submit "Search", "data-theme" => "d", "data-icon" => "search" %>
+                <% end %>
+
+              </div>
+
+  </div><!-- /header -->
+
+  <div data-role="content">
+    <%= yield %>
+  </div><!-- /content -->
+
+  <div data-role="footer" data-theme="d">
+        <% if user_signed_in?%>
+               <%= link_to "My Bids", auction_index_user_path %>
+               <%= link_to "Auctions", auctions_path %>
+
+              <%= link_to "Sign Out", destroy_user_session_path, "class" => "ui-btn-right" %>
+
+          <% else %>
+              <%= link_to "Sign Up", "/users/sign_up" %>
+              <%= link_to "Sign In", "/users/sign_in" %>
+          <% end %>
+  </div><!-- /footer -->
+</div><!-- /page -->
+
+
+
+
+</body>
+
+</html>

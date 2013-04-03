@@ -1,0 +1,15 @@
+<!--Displaying popular products and featured products calls this piece of code
+Called from home/index.html.erb -->
+
+<% @items.each do |item|%>
+
+    <li class="span2">
+      <div class="thumbnail">
+        <center><%= link_to   image_tag(item.image_url, :class => 'thumbnail_image'), item %></center>
+        <bottom><div class="caption">
+          <%=  link_to item.name , item %>
+        </div>
+        </bottom>
+      </div>
+    </li>
+<% end %>

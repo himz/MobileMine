@@ -1,0 +1,11 @@
+<% if line_item.line_item_type == 0 %>
+<tr id="current_item">
+<td><%= image_tag(line_item.item.image_url, :class => 'thumbnail_cart_image')%> </td>
+<td><%= line_item.item.name %> </td>
+<td><%= line_item.item.price %></td>
+<td><%= Integer(line_item.quantity) %></td>
+<td class="item_price"><%= number_to_currency(line_item.total_price) %></td>
+<td><%= button_to 'Cancel', line_item, :method => :delete,:confirm => 'Are you sure?', class: "btn btn-danger" %></td>
+<td><%= link_to "Wish List", line_items_change_type_path(:item=>line_item, :type=>1),  class:"btn btn-success"%></td>
+</tr>
+<% end %>

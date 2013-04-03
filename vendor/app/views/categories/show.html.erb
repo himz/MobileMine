@@ -1,0 +1,17 @@
+<div class="row">
+  <!-- start side-bar -->
+  <div class="span3">
+    <%= render "layouts/sidebar" %>
+  </div>
+  <!-- end side-bar -->
+  <p id="notice"><%= notice %>
+  <!-- start listing item -->
+  <div class="span7 popular_products">
+    <h4><%= @category.name %></h4><br>
+    <ul class="thumbnails">
+      <%=  will_paginate @items %>
+        <%= render :partial => 'layouts/item_listing' %>
+      <%=  will_paginate @items %>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="row">
+  <!-- start side-bar -->
+  <!-- end side-bar -->
+  <p id="notice"><%= notice %>
+    <!-- start listing item -->
+  <div class="span7 popular_products">
+    <table cellpadding="10">
+      <tr>
+        <td><h1><%= @item.name %></h1></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <h2>Description</h2>
+          <br/>
+          <%= @item.description %>
+        </td>
+
+      </tr>
+      <tr>
+        <td>
+          <h4>Manufacturer</h4>
+        </td>
+        <td>
+          <%= @item.manufacturer %>
+        </td>
+
+      </tr>
+      <tr>
+        <td>
+          <h4>Price</h4>
+        </td>
+        <td> <%= @item.price %></td>
+
+      </tr>
+      <tr>
+        <td>
+          <h4>Available</h4>
+
+        </td>
+        <td><%= @item.availability %></td>
+
+      </tr>
+
+    </table>
+
+
+  </div>
+</div>

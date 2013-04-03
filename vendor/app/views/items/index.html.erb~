@@ -1,0 +1,25 @@
+<h1>Listing events</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Image</th>
+    <th>Description</th>
+    <th>Availability</th>
+  </tr>
+  
+  
+  <% @items.each do |item| %>
+  <tr>
+
+    <td><%= item.Name %></td>
+    <td><%= item.Price %></td>
+    <td><%= image_tag(item.Image) %></img></td>
+    <td><%= item.Description %></td>
+    <td><%= item.Availability %></td>
+  
+  
+  </tr>
+<% end %>
+  </table>

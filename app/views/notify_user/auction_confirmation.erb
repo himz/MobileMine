@@ -1,0 +1,8 @@
+Congratulations, <%= @user.first_name %>!
+
+You are the final highest bidder <%= Item.find(@auction.item_id).name %>
+
+<%= link_to 'CLick here to checkout your item', root_url.chop+cart_checkout_path(:id => @auction.id)%></td>
+
+Thank you for visiting Mobile Mine!
+

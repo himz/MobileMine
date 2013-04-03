@@ -1,0 +1,15 @@
+<!-- Show order details. The congrats message should be shown only first time. Status should be read, not hardcoded. TODO!-->
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b><%= Item.find(@order.item_id).name  %>. </b>
+  <br/>
+  Your order is now under processing...
+  <br/>
+  Your reference Number for the order :
+  <%= @order.id %>
+</p>
+
+
+
+<%= link_to 'Back', root_path %>

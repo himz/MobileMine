@@ -1,0 +1,30 @@
+<div class="alert alert-success">Congratulations!! Your transaction is complete. The confirmation has been sent by email.</div>
+
+<% if  @confirmed_items.length > 0 %>
+    <div class="breadcrumb">
+       <div><b>Shipping Address</b></div><br/>
+       <%= @saddress %> <br/> <%= @szipcode %> <br/>
+        <br/><br/>
+
+    <div><b>Order summary</b></div><br/>
+    <table class="table">
+      <th>Item</th>
+      <th>From seller</th>
+      <th>Tracking number</th>
+    <%  @orders.each { |order|     %>
+        <tr>
+          <td><%= Item.find(order.item_id).name %></td>
+          <td><%= User.find(order.seller_id).email %></td>
+          <td><%= link_to order.id+579726, order_path(order) %></td>
+        </tr>
+    <%}%>
+    </table>
+    </div>
+<%end%>
+<br/>
+<!--TODO: Add a red fnt fr unavilable-->
+<% if  @unavailable_items.length > 0 %>
+    <%= @unavailable_items %> is not available at this time! Sorry, you can try purchasing this item later or move it to your wishlist. You will be informed if it becomes available.
+<%end%>
+
+

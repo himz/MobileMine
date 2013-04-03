@@ -1,0 +1,63 @@
+<%= form_for(@item) do |f| %>
+    <div class="item_image"><br/>Image URL<br/><%= f.text_field :image_url %><br/><%= image_tag("placeholder.jpg", :size=>"300x300")%></div>
+
+    <div class="item_content" >
+      <table cellpadding="10">
+        <tr>
+          <td><h1>Name<%= f.text_field :name %></h1></td>
+        </tr>
+        <tr>
+          <td>
+            <h4>Manufacturer</h4>
+            <%= f.text_field :manufacturer %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h4>Price/Auction minimum in $</h4>
+            <%= f.text_field :price %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h4>Availability</h4>
+            <%= f.text_field :availability %>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+    </div>
+    <div class="item_content" width="100%">
+      <table cellpadding="10">
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <tr>
+          <td colspan="10"><h4>Description</h4><br/>
+            <%= f.text_area :description, :cols=>100, :rows=>5%></td>
+        </tr>
+        <tr>
+          <td>
+            <h4>Choose categories</h4><br/>
+                <% @categories.each do |category|  %>
+                    <%= category.name %>: <%= check_box_tag "category[]", category.id, @category_ids.include?(category.id)%>
+                <% end %>
+           </td>
+
+        </tr>
+        <tr>
+          <td align="right"><%= f.label :featured %></td>
+          <td><%= f.check_box :featured, {}, "true", "false" %></td>
+        </tr>
+        <%if !(@disable_auction_flag)   %>
+        <tr>
+          <td align="right"><%= f.label :auction_flag %></td>
+          <td><%= f.check_box :auction_flag, {}, "true", "false" %></td>
+        </tr>
+        <tr>
+          <%end%>
+          <td colspan="2" align="center" ><div><div><%= f.submit %></div></div></td>
+        </tr>
+      </table>
+    </div>
+
+<% end %>

@@ -1,0 +1,15 @@
+<div class="row">
+  <!-- start side-bar -->
+  <div class="span3">
+    <%= render "layouts/sidebar" %>
+  </div>
+  <!-- end side-bar -->
+  <p id="notice"><%= notice %>
+    <!-- start listing item -->
+  <div class="span7 popular_products">
+    <h4>My Items</h4><br>
+    <ul class="thumbnails">
+      <%= render :partial => 'layouts/item_listing' %>
+    </ul>
+  </div>
+</div>

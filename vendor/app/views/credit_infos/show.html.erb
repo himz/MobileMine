@@ -1,0 +1,26 @@
+<!-- Display credit card information -->
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @credit_info.user_id %>
+</p>
+
+<p>
+  <b>Billing address:</b>
+  <%= @credit_info.billing_address %>
+</p>
+
+<p>
+  <b>Credit card no:</b>
+  <%= @credit_info.credit_card_no %>
+</p>
+
+<p>
+  <b>Zipcode:</b>
+  <%= @credit_info.zipcode %>
+</p>
+
+
+<%= link_to 'Edit', edit_credit_info_path(@credit_info) %> |
+<%= link_to 'Back', credit_infos_path %>

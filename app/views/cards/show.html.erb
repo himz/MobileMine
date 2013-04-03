@@ -1,0 +1,23 @@
+<% if notice %>
+<div class="alert alert-success">
+<p id="notice"><%= notice %></p>
+</div>
+<% end %>
+<table class="table">
+   <tr>
+     <td><b>Card number:</b></td>
+     <td><%= @card.card_number %></td>
+   </tr>
+  <tr>
+    <td><b>Cvv:</b></td>
+    <td><%= @card.cvv %></td>
+  </tr>
+  <tr>
+    <td><b>Expiry date:</b></td>
+    <td><%= @card.expiry_date %></td>
+  </tr>
+
+</table>
+
+<%= link_to "Go back to Check Out", cart_checkout_path, :class => "btn btn-primary"  %>
+

@@ -1,0 +1,45 @@
+<%= form_tag reports_sales_details_path, :method => "get" %>
+<%= label_tag "Select Number of your top products to show in chart"  %>
+<%= text_field_tag :no_of_items, @no_of_items %>
+<%= submit_tag "Select" %>
+
+<%= render :partial => 'reports/chart_sales_products' %>
+
+<%= render :partial => 'reports/chart_pie_sales_products' %>
+
+
+All Products with details :
+
+<br/>
+<br/>
+
+<table cellpadding="10" border="0" class="table">
+  <tr>
+    <th>Item Name</th>
+    <th>Seller</th>
+    <th>Active</th>
+    <th>Quantity Sold</th>
+
+
+  </tr>
+
+  <% @data_sales_products.each do |data| %>
+
+      <tr>
+       <td><%= data.name%></td>
+       <td><%= data.first_name%></td>
+        <% if data.activated?%>
+            <td>True</td>
+        <% else %>
+            <td>False</td>
+        <% end %>
+
+
+       <td><%= data.sum_sales%></td>
+      </tr>
+
+  <% end %>
+
+
+</table>
+

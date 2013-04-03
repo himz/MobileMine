@@ -1,0 +1,174 @@
+<!--Item.all.sort{ |a,b| a.created_at <=> b.created_at }-->
+<!--TODO: This frm has no validations!!! FIXXXXX-->
+<p id="notice"><%= notice %></p>
+<div class="row">
+
+  <div class="span7 popular_products">
+
+    <div class="row">
+      <div class="span12">
+        <div class="accordion" id="accordion2">
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <span class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" onmouseover="this.style.cursor='hand'"  >
+                <h3>Item Summary</h3>
+              </span>
+            </div>
+            <div id="collapseOne" class="accordion-body collapse">
+              <div class="accordion-inner">
+
+                <h4>My Cart</h4><br>
+                <% unless @cart.line_items.empty? %>
+                    <table class="table table-bordered table-striped">
+                      <th>Image</th>
+                      <th>Name</th>
+                      <th>Price(ea)</th>
+                      <th>Quantity</th>
+                      <th>Total</th>
+                      <% @cart.line_items.each do |line_item| %>
+                          <% if line_item.line_item_type == 0 %>
+                              <tr id="current_item">
+                                <td><center><%= image_tag(line_item.item.image_url, :class => 'thumbnail_cart_image')%></div></td>
+                              <td><%= line_item.item.name %> </td>
+                              <td><%= line_item.item.price %></td>
+                              <td><%= Integer(line_item.quantity) %></td>
+                              <td class="item_price"><%= number_to_currency(line_item.total_price) %></td>
+                              </tr>
+                          <% end %>
+
+                          <% if line_item.line_item_type == 9 %>
+                              <tr id="current_item">
+                                <td><center><%= image_tag(line_item.item.image_url, :class => 'thumbnail_cart_image')%></div></td>
+                              <td><%= line_item.item.name %> </td>
+                              <td><%= Auction.find_by_item_id(line_item.item_id).bid_amount %></td>
+                              <td><%= Integer(line_item.quantity) %></td>
+                              <td class="item_price"><%= number_to_currency(line_item.total_price) %></td>
+                              </tr>
+                          <% end %>
+                      <% end %>
+                      <tr class="total_line">
+                        <td colspan="4">Total</td>
+                        <td colspan="3" class="total_cell"><%= number_to_currency(@cart.total_price) %></td>
+                      </tr>
+                      </table>
+                      <br/>
+
+                      </table>
+                      <%= link_to 'Shopping Cart', @cart, class: "btn btn-warning pull-right" %>
+                      <br/>
+                      <br/>
+                      <br/>
+
+                <% end %>
+
+
+
+
+                </div>
+          </div>
+        </div>
+        <br/>
+
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <span class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse2" >
+              <h3>Address</h3>
+            </span>
+          </div>
+          <div id="collapse2" class="accordion-body collapse in">
+            <div class="accordion-inner">
+              Please enter your shipping and billing details to continue. <br/>
+
+              <%= form_tag carts_confirm_checkout_path, validates:true %>
+              <table cellpadding="10">
+                <tr>
+                  <td align="right">Name</td>
+                  <td><%= text_field_tag(:firstname, current_user.first_name) %></td>
+                </tr>
+                <tr>
+                  <td align="right">Billing Address</td>
+                  <td> <%= text_area_tag(:address, current_user.address, :size => "40x5") %></td>
+                </tr>
+                <tr>
+                  <td align="right">ZipCode</td>
+                  <td><%= text_field_tag(:zipcode, current_user.zipcode) %></td>
+                </tr>
+                <tr>
+                  <td align="right">Shipping Address(leave blank if same as billing address)</td>
+                  <td> <%= text_area_tag(:saddress, nil, :size => "40x5") %></td>
+                </tr>
+                <tr>
+                  <td align="left">ZipCode</td>
+                  <td><%= text_field_tag(:szipcode) %></td>
+                </tr>
+              </table>
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse3">
+                <button class="btn btn-primary pull-right" >Next</button>
+
+              </a>
+              <br/>
+              <br/>
+              <br/>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <span class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse3" >
+            <h3>Checkout</h3>
+          </span>
+        </div>
+        <div id="collapse3" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <br/>
+
+            Please enter your credit card number <br/>
+
+            <table cellpadding="10">
+              <% if(@credit_cards.nil?) %>
+                  <tr>
+                    <td align="right">Use registered credit cards</td>
+                    <td> <%= select("card", "user_id", Card.all.collect {|p| [ p.card_number.decrypt(KEYPAIR_PASSWORD).sub(/^([0-9]+)([0-9]{4})$/) { '*' * $1.length + $2 }, p.id ] }, {:include_blank => 'None'}) %> </td>
+		  </tr>
+		  <tr>
+
+ 		     <td align="right"><a class="btn btn-primary pull-right" href="/cards/new">New Card</a></td>
+                  </tr>
+              <%else%>
+                  <tr>
+                    <td align="right">Credit Card Number</td>
+                    <td> <%= text_field_tag(:credit_card_no, @credit_cards.credit_card_no) %></td>
+                    <td> <%= select("card", "user_id", Card.all.collect {|p| [ p.card_number.decrypt(KEYPAIR_PASSWORD).sub(/^([0-9]+)([0-9]{4})$/) { '*' * $1.length + $2 }, p.id ] }, {:include_blank => 'None'}) %> </td>
+                  </tr>
+		           <tr>
+
+                     <td align="right"><a class="btn btn-primary pull-right" href="/cards/new">New Card</a></td>
+                  </tr>
+              <% end %>
+
+            </table>
+            <%= submit_tag "Confirm Order", class: "btn btn-primary pull-right", :method => 'post' %>
+            <br/>
+            <br/>
+            <br/>
+
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+
+  </div>
+</div>
+</div>
+</div>

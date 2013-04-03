@@ -1,0 +1,11 @@
+<h1>Editing auction</h1>
+<!--Creating a new order/buy -->
+<%= form_tag auction_change_state_path(:auction=>@auction.id),validate:true %>
+<p><%= @item.name %>?</p>
+<%= select_tag :state, options_for_select([["Open", 0], ["Closed", 1] , ["Cancelled",2], ["Processing",3]]) %>
+<label>End time of auction :</label>     <%= text_field_tag(:end_time, Auction.find(@item.auction_id).end_time) %>
+<div class="field">
+  <%= submit_tag "Save changes",class: "btn" %>
+</div>
+
+<%= link_to 'Back', item_path(@auction.item_id) %>

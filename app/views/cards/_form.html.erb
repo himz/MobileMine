@@ -1,0 +1,35 @@
+<%= form_for(@card) do |f| %>
+  <% if @card.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@card.errors.count, "error") %> prohibited this card from being saved:</h2>
+
+      <ul>
+      <% @card.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="well">
+  <div class="field">
+  <%= f.label :type  %><br />
+  <%= select_tag(:type, options_for_select([['VISA', 'VI'], ['MASTER CARD', 'M'], ['AMERICAN EXPRESS', 'A'], ['BANK OF AMERICA', 'B']])) %>
+  </div>
+  <div class="field">
+    <%= f.label :card_number %><br />
+    <%= f.text_field :card_number %>
+  </div>
+  <div class="field">
+    <%= f.label :cvv %><br />
+    <%= f.text_field :cvv %>
+  </div>
+  <div class="field">
+    <%= f.label :expiry_date %><br />
+    <%= f.date_select :expiry_date %>
+  </div>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  </div>
+<% end %>

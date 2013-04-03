@@ -1,0 +1,43 @@
+<div class="row">
+  <!-- start side-bar -->
+  <div class="span3">
+    <%= render "layouts/sidebar" %>
+  </div>
+  <!-- end side-bar -->
+  <div class="span7 popular_products">
+    <p id="notice"><%= notice %>
+  </div>
+    <!-- start listing item -->
+  <div class="span7 popular_products">
+    <h4>My Cart</h4><br>
+    <% unless @cart.line_items.empty? %>
+        <table class="table table-bordered table-striped">
+          <th>Image</th>
+          <th>Name</th>
+          <th>Price(ea)</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Cancel</th>
+          <th>Wish list</th>
+          <%= render(@cart.line_items) %>
+          <tr class="total_line">
+            <td colspan="4">Total</td>
+            <td colspan="3" class="total_cell"><%= number_to_currency(@cart.total_price) %></td>
+          </tr>
+        </table>
+        <br/>
+        <div class="row">
+          <div class="span3">
+           <%= button_to 'Empty Cart', @cart, :method => :delete,:confirm => 'Are you sure?', class: "btn btn-warning" %></button>
+          </div>
+          <div class="span6">
+            <%= button_to 'Check Out', cart_checkout_path, class: "btn btn-primary pull-right" %></a>
+          </div>
+        </div>
+        </table>
+    <% end %>
+  </div>
+</div>
+
+
+

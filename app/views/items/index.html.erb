@@ -1,0 +1,32 @@
+<div class="row">
+  <!-- Start Sidebar -->
+  <div class="span3">
+    <%= render "layouts/sidebar" %>
+  </div>
+  <!-- End Sidebar -->
+
+  <div class="span7 popular_products">
+    <h4>Result of "<%= @keyword['name_contains'] %>" = <%= @items.count %></h4>
+    <br/>
+    <%=  will_paginate @items %>
+    <ul class="thumbnails">
+        <%= render :partial => 'layouts/item_listing' %>
+    </ul>
+    <%=  will_paginate @items %>
+  </div>
+  <div class="span2">
+
+    <!--<div class="roe">
+      <h4>Newsletter</h4><br>
+      <p>Sign up for our weekly newsletter and stay up-to-date with the latest offers, and newest products.</p>
+
+      <form class="form-search">
+        <input class="span2" placeholder="Enter your email" type="text"><br><br>
+        <button type="submit" class="btn pull-right">Subscribe</button>
+      </form>
+    </div><br><br>
+    <a href="#"><img alt="" title="" src="media/paypal_mc_visa_amex_disc_150x139.gif"></a>
+    <a href="#"><img alt="" src="media/bnr_nowAccepting_150x60.gif"></a> -->
+
+  </div>
+</div>

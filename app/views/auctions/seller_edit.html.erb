@@ -1,0 +1,33 @@
+<%= form_for(@auction, :method => :post, :url => auction_change_state_path(@auction)) do |f| %>
+    <div class="alert"><h3>Edit auction</h3></div>
+    <div class="well">
+    <% if @auction.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@auction.errors.count, "error") %> prohibited this auction from being saved:</h2>
+
+          <ul>
+            <% @auction.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <p><%= @item.name %>?</p>
+    <%= f.select :state, options_for_select([["Open", 0], ["Closed", 1] , ["Cancelled",2], ["Processing",3]], @auction.state) %>
+    <div class="field">
+      <%= f.label :bid_amount %><br />
+      <%= f.text_field :bid_amount %>
+    </div>
+    <div class="field">
+      <%= f.label :end_time %><br />
+      <%= f.text_field :end_time, :id=>"datepicker" %>
+    </div>
+    <div class="field">
+      <%= hidden_field :id, :value => @auction.id %>
+
+    </div>
+    <div class="actions">
+      <%= f.submit :class => "btn btn-primary" %>
+    </div>
+    </div>
+<% end %>

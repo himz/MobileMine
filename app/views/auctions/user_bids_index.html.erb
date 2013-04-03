@@ -1,0 +1,32 @@
+<!-- display list of orders. This can be used for user admin_users -->
+<div class="alert">
+<h3>Current Bids</h3>
+</div>
+<table class="table table-hover">
+  <tr>
+    <th><b>Item</b></th>
+    <th><b>Highest Bidder</b></th>
+    <th><b>Highest Bid</b></th>
+    <th><b>Start Time</b></th>
+    <th><b>End Time</b></th>
+  </tr>
+  <% if @auctions.count>0 %>
+      <% @auctions.each do |auction| %>
+          <tr>
+            <% item = Item.find(auction.item_id)
+               if auction.highest_bidder!=nil
+                 user = User.find(auction.highest_bidder)
+               end
+            %>
+            <td><%= item.name %></td>
+            <td><%= if auction.highest_bidder!=nil then user.first_name+user.last_name else "Empty" end%></td>
+            <td><%= if auction.highest_bidder!=nil then auction.bid_amount else "0" end%></td>
+            <td><%= auction.created_at.getlocal.strftime("%Y-%m-%d %H:%M") %></td>
+            <td><%= auction.end_time.getlocal.strftime("%Y-%m-%d %H:%M") %></td>
+          </tr>
+      <% end %>
+  <%else%>
+      <div class="alert alert-danger">You haven't bidded on any item</div>
+  <%end%>
+</table>
+

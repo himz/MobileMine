@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+Order details:
+<%  @orders.each { |order|     %>
+  Item: <%= Item.find(order.item_id).name %>
+  from seller: <%= User.find(order.seller_id).email %>    <br/>
+  tracking number: <%= order.id+579726 %>
+    <br/>
+    <br/>
+  <%}%>

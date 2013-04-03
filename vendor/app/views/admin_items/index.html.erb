@@ -1,0 +1,33 @@
+<div class="row">
+  <!-- start side-bar -->
+  <!-- end side-bar -->
+  <p id="notice"><%= notice %></p>
+  <!-- start listing item -->
+
+  <div class="span7 popular_products">
+    <h1>Items of the System</h1><br/>
+    <table cellpadding="10" width="800" border="1">
+      <tr>
+        <th>Item name</th>
+        <th>Item description</th>
+        <th>Show</th>
+        <th colspan="2">Action</th>
+      </tr>
+
+      <% @items.each do |item| %>
+        <% if item.activated? then font="#009900" else font="#990000" end %>
+        <tr>
+        <td><font color="<%=font%>"><%= item.name %></font></td>
+        <td width="300"><font color="<%=font%>"><%= item.description %></font></td>
+        <td><%= link_to 'Show', admin_items_path(item) %></td>
+        <% if item.activated?%>
+        <td><%= link_to 'Deactivate', admin_items_deactivate_path(item)%></td>
+         <% else %>
+        <td><%= link_to 'Activate', admin_items_activate_path(item)%></td><% end %>
+        <td><%= link_to 'Delete', admin_items_delete_path(item), confirm: 'Are you sure you want to delete the item "'+item.name+'"', method: :delete %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+

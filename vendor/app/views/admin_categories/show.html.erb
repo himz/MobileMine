@@ -1,0 +1,22 @@
+<div class="row">
+  <!-- start side-bar -->
+  <!-- end side-bar -->
+  <p id="notice"><%= notice %>
+    <!-- start listing item -->
+  <div class="span7 popular_products">
+    <h1><%= @category.name %></h1>
+    <br/>
+    <table cellpadding="10" border="1">
+      <tr>
+        <td><b>Category Name</b></td>
+        <td><%= @category.name %></td>
+      </tr>
+      <tr>
+        <td><b>Image url</b></td>
+        <td><%= @category.image_url %></td>
+      </tr>
+    </table>
+
+
+  </div>
+</div>

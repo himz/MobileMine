@@ -1,0 +1,29 @@
+<!--Item.all.sort{ |a,b| a.created_at <=> b.created_at }-->
+<div class="row">
+  <!-- Start Sidebar -->
+  <div class="span3">
+    <%= render "layouts/sidebar" %>
+  </div>
+  <!-- End Sidebar -->
+  <p id="notice"><%= notice %></p>
+  <div class="span7 popular_products">
+    <% if  current_user.user_type !=2 %>
+        Sorry you do not have the permissions to view the page. Please upgrade your account.
+    <%else%>
+        <h4>Enter details of the item</h4>
+        <% if @item.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@item.errors.count, "error") %> prohibited this location from being saved:</h2>
+
+              <ul>
+                <% @item.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <%= render :partial => 'item_form' %>
+    <%end%>
+</div>
+</div>

@@ -1,0 +1,30 @@
+<% if notice %>
+<div class="alert alert-success"><%= notice %></div>
+<% end %>
+<!--12/31/2012 5:00 AM-->
+
+<div class="alert alert-danger">Time left: <%= render "auctions/countdown" %></div>
+<div class="well">
+<p>
+  <b>Item name:</b>
+  <%=@auction.item_id%> - <%=  link_to Item.find(@auction.item_id).name, item_path(Item.find(@auction.item_id)) %>
+</p>
+<p>
+  <b>Bid amount:</b>
+  <%= number_to_currency(@auction.bid_amount, :unit => "$") %>
+</p>
+<p>
+  <b>Highest bidder:</b>
+  <% @bidder = @auction.highest_bidder %>
+  <% if @bidder %>
+    <%=  User.find(@auction.highest_bidder) %>
+  <%else%>
+    <%=  "No bidder!" %>
+  <%end %>
+</p>
+<p>
+  <b>State:</b>
+  <%= @auction.state %>
+</p>
+</div>
+<%= link_to 'Back', item_path(@auction.item_id), :class => "btn btn-primary" %>

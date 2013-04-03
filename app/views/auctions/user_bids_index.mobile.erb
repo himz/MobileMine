@@ -1,0 +1,31 @@
+
+
+
+<ul data-role="listview" data-divider-theme="a">
+  <li data-role="list-divider" ><h4>My Current Bids </h4></li>
+  <% if @auctions.count>0 %>
+      <% @auctions.each do |auction|%>
+          <% item = Item.find(auction.item_id)
+             if auction.highest_bidder!=nil
+               user = User.find(auction.highest_bidder)
+             end
+          %>
+              <li>
+                <a href="/items/<%=item.id%>">
+                  <%= image_tag(item.image_url, :size => "950x500")   %>
+
+
+
+                  <b><%=item.name%></b>
+                <br />Highest bidder:  <%= if auction.highest_bidder!=nil then user.first_name+user.last_name else "Empty" end%>
+                <br />Highest bid:   <%= if auction.highest_bidder!=nil then auction.bid_amount else "0" end%>
+                <br /> Ends:  <%= auction.end_time.getlocal.strftime("%Y-%m-%d %H:%M") %>
+                </a>
+              </li>
+      <% end %>
+  <%else%>
+      You haven't bidded on any item
+  <%end%>
+
+  <br/>
+</ul>

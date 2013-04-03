@@ -1,0 +1,17 @@
+<%= @user.first_name %>,
+
+Thanks for placing your order!
+Here is the details of your order:
+
+Items purchased: <%= @confirmed_items %>
+
+Order details:
+<%  @orders.each { |order|     %>
+    Item: <%= Item.find(order.item_id).name %>
+    from seller: <%= User.find(order.seller_id).email %>
+    tracking number: <%= order.id+579726 %>
+<%}%>
+
+Thank you for visiting Mobile Mine!
+
+

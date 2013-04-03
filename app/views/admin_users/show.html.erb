@@ -1,0 +1,28 @@
+<div class="row">
+  <!-- start side-bar -->
+  <!-- end side-bar -->
+  <p id="notice"><%= notice %></p>
+    <!-- start listing item -->
+
+  <div class="span7 popular_products">
+    <h2>User Profile</h2>
+      <table cellpadding="10">
+        <tr>
+          <td>Full Name</td>
+          <td><%= @user.first_name %> <%= @user.last_name %></td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <td>Address</td>
+          <td><%= @user.address %><%= @user.zipcode %></td>
+        </tr>
+        <tr>
+          <td>Phone Number</td>
+          <td><%= @user.phone_number%></td>
+        </tr>
+      </table>
+  </div>
+</div>

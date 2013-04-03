@@ -1,0 +1,2 @@
+module CreditInfosHelper
+end
